@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase - Hotel Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <header class="bg-primary text-white p-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0">TravelEase - Hotel Booking</h1>
+        <nav class="nav">
+            <a class="nav-link text-white" href="index.html">Home</a>
+            <a class="nav-link text-white" href="hotel-booking.html">Hotel Booking</a>
+            <a class="nav-link text-white" href="bus-booking.html">Bus Booking</a>
+            <a class="nav-link text-white" href="car-booking.html">Car Booking</a>
+            <a class="nav-link text-white" href="login.html">Login</a>
+            <a class="nav-link text-white" href="register.html">Register</a>
+        </nav>
+    </div>
+</header>
+    <main class="container mt-4">
+        <form id="hotel-booking-form" class="bg-light p-4 rounded">
+            <h2>Book Your Hotel</h2>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" placeholder="Enter location" required>
+            </div>
+            <div class="form-group">
+                <label for="checkin-date">Check-in Date</label>
+                <input type="date" class="form-control" id="checkin-date" required>
+            </div>
+            <div class="form-group">
+                <label for="checkout-date">Check-out Date</label>
+                <input type="date" class="form-control" id="checkout-date" required>
+            </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <input type="number" class="form-control" id="guests" placeholder="Number of guests" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search Hotels</button>
+        </form>
+
+        <section class="mt-4" id="hotel-list">
+            <h3>Available Hotels</h3>
+            <div class="row" id="hotel-cards">
+                <!-- Dynamic hotel cards will be inserted here -->
+            </div>
+        </section>
+    </main>
+    <footer class="text-center p-4 bg-primary text-white mt-4">
+      <p>&copy; 2024 <a style="color: white; text-decoration: none;" href="https://github.com/ohiocodehunter">Ohio CodeHunter</a> All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Function to simulate hotel search and display results
+        document.getElementById('hotel-booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const location = document.getElementById('location').value;
+            const checkinDate = document.getElementById('checkin-date').value;
+            const checkoutDate = document.getElementById('checkout-date').value;
+            const guests = document.getElementById('guests').value;
+
+            // Simulate available hotels (replace with actual API call)
+            const hotels = [
+                { name: 'Family Hotel', price: 1600.00, address: 'Invertis Village, Bareilly' },
+                { name: 'Budget Inn', price: 800.00, address: 'Junction, Bareilly' },
+                { name: 'Oyo', price: 1400.00, address: '789 Pilibhit, Bareilly' },
+                { name: 'Budget Oyo', price: 900.00, address: ' Lucknow, City' },
+                { name: 'King Hotel', price: 1150.00, address: 'Gorakhpur , City' },
+                { name: 'Tiger Resort', price: 799.99, address: 'Nautanwa, Maharajganj' },
+                { name: 'Malani', price: 860.50, address: 'Eksadva, Maharajganj' },
+                { name: 'Black Kingdom', price: 1200.00, address: 'Pasiya Noutanwa Rd, Maharajganj' },
+                { name: 'Family Resort', price: 1800.00, address: 'Ghantaghar, Bareilly' },
+                { name: 'Family Resort', price: 2000.00, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 1950.00, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 2100.19, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 4000.00, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 950.00, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 2520.00, address: '789 Family Rd, City' },
+                { name: 'Family Resort', price: 1000.00, address: '789 Family Rd, City' },
+            ];
+
+            const hotelCards = document.getElementById('hotel-cards');
+            hotelCards.innerHTML = ''; // Clear previous results
+
+            hotels.forEach(hotel => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 mb-3';
+                card.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${hotel.name}</h5>
+                            <p class="card-text">Price: Rs  ${hotel.price}/night</p>
+                            <p class="card-text">Address: ${hotel.address}</p>
+                            <button class="btn btn-success" onclick="bookHotel('${hotel.name}')">Book Now</button>
+                        </div>
+                    </div>
+                `;
+                hotelCards.appendChild(card);
+            });
+        });
+
+        function bookHotel(hotelName) {
+            alert(`You have booked ${hotelName} successfully!`);
+        }
+    </script>
+</body>
+</html>

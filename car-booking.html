@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >TravelEase - Car Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <header class="bg-primary text-white p-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0">TravelEase - Car Booking</h1>
+        <nav class="nav">
+            <a class="nav-link text-white" href="index.html">Home</a>
+            <a class="nav-link text-white" href="hotel-booking.html">Hotel Booking</a>
+            <a class="nav-link text-white" href="bus-booking.html">Bus Booking</a>
+            <a class="nav-link text-white" href="car-booking.html">Car Booking</a>
+            <a class="nav-link text-white" href="login.html">Login</a>
+            <a class="nav-link text-white" href="register.html">Register</a>
+        </nav>
+    </div>
+</header>
+    <main class="container mt-4">
+        <form id="car-booking-form" class="bg-light p-4 rounded">
+            <h2>Book Your Car</h2>
+            <div class="form-group">
+                <label for="pickup-location">Pickup Location</label>
+                <input type="text" class="form-control" id="pickup-location" placeholder="Enter pickup location" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-date">Pickup Date</label>
+                <input type="date" class="form-control" id="pickup-date" required>
+            </div>
+            <div class="form-group">
+                <label for="dropoff-date">Drop-off Date</label>
+                <input type="date" class="form-control" id="dropoff-date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search Cars</button>
+        </form>
+
+        <section class="mt-4" id="car-list">
+            <h3>Available Cars</h3>
+            <div class="row" id="car-cards">
+                <!-- Dynamic car cards will be inserted here -->
+            </div>
+        </section>
+    </main>
+    <footer class="text-center p-4 bg-primary text-white mt-4">
+      <p>&copy; 2024 <a style="color: white; text-decoration: none;" href="https://github.com/ohiocodehunter">Ohio CodeHunter</a> All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Function to simulate car search and display results
+        document.getElementById('car-booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const pickupLocation = document.getElementById('pickup-location').value;
+            const pickupDate = document.getElementById('pickup-date').value;
+            const dropoffDate = document.getElementById('dropoff-date').value;
+
+            // Simulate available cars (replace with actual API call)
+            const cars = [
+                { name: 'Sedan', price: 800, features: 'Air Conditioning, GPS' },
+                { name: 'SUV', price: 4100, features: '4WD, Spacious' },
+                { name: 'Convertible', price: 7000, features: 'Luxury, Sporty' },
+                { name: 'Suzuki', price: 400, features: 'Air Conditioning, GPS' },
+                { name: 'Maruti', price: 700, features: '4WD, Spacious' },
+                { name: 'Cab', price: 250, features: 'Luxury, Sporty' },
+                { name: 'Taxi', price: 40, features: 'Air Conditioning, GPS' },
+                { name: 'Sadabahar', price: 70, features: '4WD, Spacious' },
+                { name: 'Bulero', price: 399, features: 'Luxury, Sporty' },
+                { name: 'Porche', price: 80000, features: 'Air Conditioning, GPS' },
+                { name: 'Ghost', price: 9999999, features: '4WD, Spacious' },
+                { name: 'BMW M5', price: 10000000, features: 'Luxury, Sporty' },
+            ];
+
+            const carCards = document.getElementById('car-cards');
+            carCards.innerHTML = ''; // Clear previous results
+
+            cars.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 mb-3';
+                card.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${car.name}</h5>
+                            <p class="card-text">Price: Rs  ${car.price}/day</p>
+                            <p class="card-text">Features: ${car.features}</p>
+                            <button class="btn btn-success" onclick="bookCar('${car.name}')">Book Now</button>
+                        </div>
+                    </div>
+                `;
+                carCards.appendChild(card);
+            });
+        });
+
+        function bookCar(carName) {
+            alert(`You have booked a ${carName} successfully!`);
+        }
+    </script>
+</body>
+</html>

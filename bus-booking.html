@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase - Bus Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <header class="bg-primary text-white p-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0">TravelEase - Bus Booking</h1>
+        <nav class="nav">
+            <a class="nav-link text-white" href="index.html">Home</a>
+            <a class="nav-link text-white" href="hotel-booking.html">Hotel Booking</a>
+            <a class="nav-link text-white" href="bus-booking.html">Bus Booking</a>
+            <a class="nav-link text-white" href="car-booking.html">Car Booking</a>
+            <a class="nav-link text-white" href="login.html">Login</a>
+            <a class="nav-link text-white" href="register.html">Register</a>
+        </nav>
+    </div>
+</header>
+    <main class="container mt-4">
+        <form id="bus-booking-form" class="bg-light p-4 rounded">
+            <h2>Book Your Bus</h2>
+            <div class="form-group">
+                <label for="bus-origin">Origin</label>
+                <input type="text" class="form-control" id="bus-origin" placeholder="Enter origin" required>
+            </div>
+            <div class="form-group">
+                <label for="bus-destination">Destination</label>
+                <input type="text" class="form-control" id="bus-destination" placeholder="Enter destination" required>
+            </div>
+            <div class="form-group">
+                <label for="bus-date">Travel Date</label>
+                <input type="date" class="form-control" id="bus-date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search Buses</button>
+        </form>
+
+        <section class="mt-4" id="bus-list">
+            <h3>Available Buses</h3>
+            <div class="row" id="bus-cards">
+                <!-- Dynamic bus cards will be inserted here -->
+            </div>
+        </section>
+    </main>
+    <footer class="text-center p-4 bg-primary text-white mt-4">
+      <p>&copy; 2024 <a style="color: white; text-decoration: none;" href="https://github.com/ohiocodehunter">Ohio CodeHunter</a> All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Function to simulate bus search and display results
+        document.getElementById('bus-booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const origin = document.getElementById('bus-origin').value;
+            const destination = document.getElementById('bus-destination').value;
+            const travelDate = document.getElementById('bus-date').value;
+
+            // Simulate available buses (replace with actual API call)
+            const buses = [
+                { name: 'Express Bus', price: 500, departure: '10:00 AM', arrival: '2:00 PM' },
+                { name: 'Sleeper', price: 820, departure: '1:00 PM', arrival: '5:00 PM' },
+                { name: 'seater', price: 20, departure: '3:00 PM', arrival: '7:00 PM' },
+                { name: 'Express Bus', price: 500, departure: '10:00 AM', arrival: '2:00 PM' },
+                { name: 'Sleeper', price: 820, departure: '1:00 PM', arrival: '5:00 PM' },
+                { name: 'seater', price: 20, departure: '3:00 PM', arrival: '7:00 PM' },
+                { name: 'Express Bus', price: 500, departure: '10:00 AM', arrival: '2:00 PM' },
+                { name: 'Sleeper', price: 820, departure: '1:00 PM', arrival: '5:00 PM' },
+                { name: 'seater', price: 20, departure: '3:00 PM', arrival: '7:00 PM' },
+                { name: 'Express Bus', price: 500, departure: '10:00 AM', arrival: '2:00 PM' },
+                { name: 'Sleeper', price: 820, departure: '1:00 PM', arrival: '5:00 PM' },
+                { name: 'seater', price: 20, departure: '3:00 PM', arrival: '7:00 PM' },
+            ];
+
+            const busCards = document.getElementById('bus-cards');
+            busCards.innerHTML = ''; // Clear previous results
+
+            buses.forEach(bus => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 mb-3';
+                card.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${bus.name}</h5>
+                            <p class="card-text">Price: Rs ${bus.price}</p>
+                            <p class="card-text">Departure: ${bus.departure}</p>
+                            <p class="card-text">Arrival: ${bus.arrival}</p>
+                            <button class="btn btn-success" onclick="bookBus('${bus.name}')">Book Now</button>
+                        </div>
+                    </div>
+                `;
+                busCards.appendChild(card);
+            });
+        });
+
+        function bookBus(busName) {
+            alert(`You have booked ${busName} successfully!`);
+        }
+    </script>
+</body>
+</html>
